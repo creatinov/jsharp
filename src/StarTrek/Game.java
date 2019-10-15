@@ -66,4 +66,8 @@ public class Game {
 	public void transferEnergyToDefender(int energy) {
 		starship.transferEnergy(energy);
 	}
+
+	public void transferEnergyToStarship(int energy) {
+		starship.exportEnergy(energy);
+	}
 }

@@ -1,5 +1,6 @@
 package StarTrek.defender;
 
+import StarTrek.exceptions.NotEnoughEnergyException;
 import StarTrek.exceptions.TooMuchException;
 
 public class Shield implements Defender {
@@ -66,5 +67,14 @@ public class Shield implements Defender {
 		}
 
 		this.energy = this.energy + energy;
+	}
+
+	@Override
+	public void minusEnergy(int energy) throws NotEnoughEnergyException {
+		if(this.energy - energy < 1) {
+			throw new NotEnoughEnergyException();
+		}
+
+		this.energy = this.energy - energy;
 	}
 }

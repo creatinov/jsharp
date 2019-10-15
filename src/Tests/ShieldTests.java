@@ -3,6 +3,7 @@ package Tests;
 import StarTrek.Game;
 import StarTrek.defender.Shield;
 import StarTrek.exceptions.NoDefenderException;
+import StarTrek.exceptions.NotEnoughEnergyException;
 import StarTrek.exceptions.TooMuchException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,8 +38,24 @@ public class ShieldTests {
 		Assert.assertEquals(37000, game.getShipEnergy());
 		Assert.assertEquals(5000, game.getShieldEnergy());
 
-
 		game.transferEnergyToDefender(5001);
+	}
+
+	@Test
+	public void whenTransferEnergyToStarship() {
+		game.raiseUpDefender();
+		game.transferEnergyToDefender(3000);
+		game.transferEnergyToStarship(2000);
+
+		Assert.assertEquals(39000, game.getShipEnergy());
+		Assert.assertEquals(3000, game.getShieldEnergy());
+
+	}
+
+	@Test(expected = NotEnoughEnergyException.class)
+	public void whenTransferEnergyToStarshipOverEnergy() {
+		game.raiseUpDefender();
+		game.transferEnergyToStarship(2001);
 	}
 
 	// TODO: for story A-2 "Buckle"

@@ -85,4 +85,13 @@ public class Starship {
 	public Defender getDefender() {
 		return this.defender;
 	}
+
+	public void exportEnergy(int energy) {
+		if(!this.hasDefender()) {
+			throw new NoDefenderException();
+		}
+
+		this.plusEnergy(energy);
+		this.defender.minusEnergy(energy);
+	}
 }
