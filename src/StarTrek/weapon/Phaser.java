@@ -1,5 +1,7 @@
 package StarTrek.weapon;
 
+import StarTrek.Galaxy;
+import StarTrek.Klingon;
 import StarTrek.exceptions.MissedException;
 
 import static StarTrek.Game.rnd;
@@ -25,13 +27,36 @@ public class Phaser implements Weapon {
 	}
 
 	@Override
-	public int fire(int distance) {
-		boolean isMissed = distance > 4000;
-		this.energy -= amount;
-		if(isMissed) {
-			throw new MissedException();
+	public void fire(Galaxy galaxy) {
+		Klingon enemy = (Klingon) galaxy.variable("target");
+		int amount = Integer.parseInt(galaxy.parameter("amount"));
+
+		if (this.canFire(amount)) {
+			int distance = enemy.distance();
+			int damage = 0;
+			try {
+				boolean isMissed = distance > 4000;
+				this.energy -= amount;
+				if(isMissed) {
+					throw new MissedException();
+				}
+				damage = calcDamage(distance);
+			} catch (MissedException e) {
+				galaxy.writeLine("Klingon out of range of phasers at " + distance + " sectors...");
+				return;
+			}
+			galaxy.writeLine("Phasers hit Klingon at " + distance + " sectors with " + damage + " units");
+			if (damage < enemy.getEnergy()) {
+				enemy.setEnergy(enemy.getEnergy() - damage);
+				galaxy.writeLine("Klingon has " + enemy.getEnergy() + " remaining");
+			} else {
+				galaxy.writeLine("Klingon destroyed!");
+				enemy.delete();
+			}
+		} else {
+			galaxy.writeLine("Insufficient energy to fire phasers!");
 		}
-		return calcDamage(distance);
+
 	}
 
 	@Override

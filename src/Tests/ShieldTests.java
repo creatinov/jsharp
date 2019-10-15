@@ -20,50 +20,16 @@ public class ShieldTests {
 
 	@Test
 	public void raiseUp() {
-		game.raiseUpShield(1000);
+		game.raiseUpShield();
 		Assert.assertTrue(game.isRaiseUpSheild());
+		Assert.assertEquals(game.getShieldEnergy(), 2000);
 	}
 
-	@Test
-	public void checkShieldEnergy() {
-		game.raiseUpShield(100);
-		int currentShieldEnergy = game.getShieldEnerrgy();
-		Assert.assertEquals(currentShieldEnergy, 100);
-	}
+	//transfer
 
-	@Test
-	public void checkTransferEnergyToSheild() {
-		game.raiseUpShield(100);
-		game.transferEnergy(1000);
-		int currentShieldEnergy = game.getShieldEnerrgy();
-		Assert.assertEquals(currentShieldEnergy, 1100);
-	}
+	//export
 
-	@Test
-	public void checkTranferEnergyFailure() {
-		game.raiseUpShield(10000);
-		game.transferEnergy(1);
-		Assert.assertEquals (game.getShieldEnerrgy(), 10000);
-
-
-	}
-	@Test
-	public void checkTransferEnergyMinVaule(){
-		game.raiseUpShield(100);
-		game.transferEnergy(-1);
-		Assert.assertEquals(game.getShieldEnerrgy(),100);
-	}
-
-	@Test
-	public void checkShipEnergy(){
-		Assert.assertEquals(game.getShipEnergy(),40000);
-	}
-
-	@Test
-	public void checkShipEnergy2(){
-		game.transferEnergy(1000);
-		Assert.assertEquals(game.getShipEnergy(),39000);
-	}
+	//shield down
 
 	@Test
 	public void checkTransferShipEnergyUnderZero(){
@@ -91,15 +57,5 @@ public class ShieldTests {
 		shield.onDamage(500);
 		Assert.assertEquals(true, shield.getIsDamaged());
 	}
-
-
-
-
-
-//	@Test
-//	public void canBuckledHitByEnemyWeapon(){
-//
-//
-//	}
 
 }

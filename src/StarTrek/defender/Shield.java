@@ -5,6 +5,7 @@ public class Shield implements Defender {
 	private int energy;
 	private boolean isUp = false;
 	private  int hp = 500;
+
 	public Shield(int energy) {
 		this.energy = energy;
 	}

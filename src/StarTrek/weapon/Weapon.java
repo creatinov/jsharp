@@ -1,12 +1,13 @@
 package StarTrek.weapon;
 
+import StarTrek.Galaxy;
 import StarTrek.exceptions.MissedException;
 
 public interface Weapon {
 
 	boolean canFire(int amount);
 
-	int fire(int distance) throws MissedException;
+	void fire(Galaxy galaxy) throws MissedException;
 
 	int powerRemaining();
 

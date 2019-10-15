@@ -11,44 +11,34 @@ import Untouchables.WebGadget;
 
 public class Game {
 
-	private Weapon phaser = new Phaser();
-
-	private Weapon photon = new Photon();
+	private Starship starship = new Starship();
 
 	private Shield shield = new Shield(0);
 
 	private int shipEnergy = 40000;
 
 	public int EnergyRemaining() {
-		return phaser.powerRemaining();
+		return starship.getPhaserEnergy();
 	}
 
 	public void setTorpedoes(int value) {
-		photon.setPowerRemaining(value);
+		starship.setPhotonTorpedoes(value);
 	}
 
 	public int getTorpedoes() {
-		return photon.powerRemaining();
+		return starship.getPhotonTorpedoes();
 
 	}
 
-	public void raiseUpShield(int energy) {
-		shield = new Shield(energy);
+	public void raiseUpShield() {
+		shield = new Shield();
 	}
 
-	public int getShieldEnerrgy() {
+	public int getShieldEnergy() {
 		return shield.getEnergy();
 	}
 
-	public void transferEnergy(int energy){
-		if(energy < 0){
-			return;
-		}
-		if(shield.getEnergy()+energy <=10000) {
-			shield.setEnergy( shield.getEnergy() + energy);
-			shipEnergy -= energy;
-		}
-	}
+
 
 	public int getShipEnergy(){
 		return shipEnergy;
@@ -59,57 +49,7 @@ public class Game {
 	}
 
 	public void fireWeapon(Galaxy wg) {
-		if (wg.parameter("command").equals("phaser")) {
-			int amount = Integer.parseInt(wg.parameter("amount"));
-			Klingon enemy = (Klingon) wg.variable("target");
-
-			if (phaser.canFire(amount)) {
-				int distance = enemy.distance();
-				int damage = 0;
-				try {
-					damage = phaser.fire(distance);
-				} catch (MissedException e) {
-					wg.writeLine("Klingon out of range of phasers at " + distance + " sectors...");
-					return;
-				}
-
-				wg.writeLine("Phasers hit Klingon at " + distance + " sectors with " + damage + " units");
-				if (damage < enemy.getEnergy()) {
-					enemy.setEnergy(enemy.getEnergy() - damage);
-					wg.writeLine("Klingon has " + enemy.getEnergy() + " remaining");
-				} else {
-					wg.writeLine("Klingon destroyed!");
-					enemy.delete();
-				}
-			} else {
-				wg.writeLine("Insufficient energy to fire phasers!");
-			}
-
-		} else if (wg.parameter("command").equals("photon")) {
-			Klingon enemy = (Klingon) wg.variable("target");
-
-			if (photon.canFire(1)) {
-				int distance = enemy.distance();
-				int damage = 0;
-				try {
-					damage = photon.fire(distance);
-					wg.writeLine("Photons hit Klingon at " + distance + " sectors with " + damage + " units");
-				} catch (MissedException e) {
-					wg.writeLine("Torpedo missed Klingon at " + distance + " sectors...");
-					return;
-				}
-
-				if (damage < enemy.getEnergy()) {
-					enemy.setEnergy(enemy.getEnergy() - damage);
-					wg.writeLine("Klingon has " + enemy.getEnergy() + " remaining");
-				} else {
-					wg.writeLine("Klingon destroyed!");
-					enemy.delete();
-				}
-			} else {
-				wg.writeLine("No more photon torpedoes!");
-			}
-		}
+		starship.fire(wg);
 	}
 
 	// note we made generator public in order to mock it
