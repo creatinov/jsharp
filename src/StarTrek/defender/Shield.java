@@ -2,7 +2,7 @@ package StarTrek.defender;
 
 public class Shield implements Defender {
 
-	private int energy;
+	private int energy = 2000;
 
 	public Shield(int energy) {
 		this.energy = energy;
