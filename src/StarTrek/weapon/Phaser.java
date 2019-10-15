@@ -6,9 +6,17 @@ import static StarTrek.Game.rnd;
 
 public class Phaser implements Weapon {
 
-	private int energy = 10000;
+	private int energy;
 
 	private int amount = 0;
+
+	public Phaser() {
+		this.energy = 10000;
+	}
+
+	public Phaser(int energy) {
+		this.energy = energy;
+	}
 
 	@Override
 	public boolean canFire(int amount) {

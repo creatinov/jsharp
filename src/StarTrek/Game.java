@@ -2,10 +2,12 @@ package StarTrek;
 
 import java.util.Random;
 
+import StarTrek.depensor.Shield;
 import StarTrek.exceptions.MissedException;
 import StarTrek.weapon.Phaser;
 import StarTrek.weapon.Photon;
 import StarTrek.weapon.Weapon;
+import Tests.MockGalaxy;
 import Untouchables.WebGadget;
 
 public class Game {
@@ -13,6 +15,10 @@ public class Game {
 	private Weapon phaser = new Phaser();
 
 	private Weapon photon = new Photon();
+
+	private Shield shield = new Shield(0);
+
+	private int shipEnergy = 40000;
 
 	public int EnergyRemaining() {
 		return phaser.powerRemaining();
@@ -25,6 +31,28 @@ public class Game {
 	public int getTorpedoes() {
 		return photon.powerRemaining();
 
+	}
+
+	public void raiseUpShield(int energy) {
+		shield = new Shield(energy);
+	}
+
+	public int getShieldEnerrgy() {
+		return shield.getEnergy();
+	}
+
+	public void transferEnergy(int energy){
+		if(energy < 0){
+			return;
+		}
+		if(shield.getEnergy()+energy <=10000) {
+			shield.setEnergy( shield.getEnergy() + energy);
+			shipEnergy -= energy;
+		}
+	}
+
+	public int getShipEnerrgy(){
+		return shipEnergy;
 	}
 
 	public void fireWeapon(WebGadget wg) {
@@ -95,4 +123,7 @@ public class Game {
 	}
 
 
+	public boolean isRaiseUpSheild() {
+		return this.shield != null && this.shield.getEnergy() > 0;
+	}
 }

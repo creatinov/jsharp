@@ -6,7 +6,15 @@ import static StarTrek.Game.rnd;
 
 public class Photon implements Weapon {
 
-	private int torpedoes = 8;
+	private int torpedoes;
+
+	public Photon() {
+		this.torpedoes = 8;
+	}
+
+	public Photon(int torpedoes) {
+		this.torpedoes = torpedoes;
+	}
 
 	@Override
 	public boolean canFire(int amount) {
