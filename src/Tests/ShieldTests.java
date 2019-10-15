@@ -28,6 +28,7 @@ public class ShieldTests {
 	public void whenTransferEnergyToDefender() {
 		game.raiseUpShield();
 		game.transferEnergyToDefender(3000);
+		Assert.assertEquals(37000, game.getShipEnergy());
 		Assert.assertEquals(5000, game.getShieldEnergy());
 		game.transferEnergyToDefender(5001);
 	}

@@ -15,8 +15,6 @@ public class Game {
 
 	private Shield shield = new Shield(0);
 
-	private int shipEnergy = 40000;
-
 	public int EnergyRemaining() {
 		return starship.getPhaserEnergy();
 	}
@@ -41,7 +39,7 @@ public class Game {
 
 
 	public int getShipEnergy(){
-		return shipEnergy;
+		return starship.getEnergy();
 	}
 
 	public void fireWeapon(WebGadget wg) {
