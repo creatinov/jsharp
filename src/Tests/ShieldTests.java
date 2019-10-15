@@ -28,17 +28,12 @@ public class ShieldTests {
 
 	//transfer
 	@Test(expected = TooMuchException.class)
-	public void whenTransferEnergyToShield() {
+	public void whenTransferEnergyToDefender() {
 		game.raiseUpShield();
-		game.transferEnergyToShield(3000);
+		game.transferEnergyToDefender(3000);
 		Assert.assertEquals(5000, game.getShieldEnergy());
-		game.transferEnergyToShield(5001);
+		game.transferEnergyToDefender(5001);
 	}
-
-	//export
-
-	//shield down
-
 
 	// TODO: for story A-2 "Buckle"
 

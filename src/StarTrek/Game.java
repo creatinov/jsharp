@@ -65,7 +65,7 @@ public class Game {
 		return this.starship.hasDefender();
 	}
 
-	public void transferEnergyToShield(int energy) {
+	public void transferEnergyToDefender(int energy) {
 		starship.transferEnergy(energy);
 	}
 }
