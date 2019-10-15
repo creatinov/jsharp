@@ -9,6 +9,8 @@ import java.util.*;
 
 public class Starship {
 
+	private int energy = 40000;
+
 	private Map<String, Weapon> weapons = new HashMap<>();
 
 	private List<Defender> defenders;
@@ -41,4 +43,17 @@ public class Starship {
 		}
 		return false;
 	}
+
+	public void plusEnergy(int value) {
+		this.energy = this.energy + value;
+	}
+
+	public void minusEnergy(int value) {
+		this.energy = this.energy - value;
+	}
+
+	public int getEnergy() {
+		return this.energy;
+	}
+
 }
