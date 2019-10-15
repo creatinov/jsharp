@@ -31,11 +31,11 @@ public class Game {
 	}
 
 	public void raiseUpShield() {
-		shield = new Shield();
+		starship.setUpDefender(new Shield(2000));
 	}
 
 	public int getShieldEnergy() {
-		return shield.getEnergy();
+		return starship.getDefender().getEnergy();
 	}
 
 
@@ -62,6 +62,10 @@ public class Game {
 
 
 	public boolean isRaiseUpSheild() {
-		return this.shield != null && this.shield.getEnergy() > 0;
+		return this.starship.hasDefender();
+	}
+
+	public void transferEnergyToShield(int energy) {
+		starship.transferEnergy(energy);
 	}
 }

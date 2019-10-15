@@ -1,5 +1,7 @@
 package StarTrek.defender;
 
+import StarTrek.exceptions.TooMuchException;
+
 public class Shield implements Defender {
 
 	private int energy;
@@ -10,6 +12,7 @@ public class Shield implements Defender {
 		this.energy = energy;
 	}
 
+	@Override
 	public int getEnergy() {
 		return this.energy;
 	}
@@ -54,5 +57,14 @@ public class Shield implements Defender {
 
 	public boolean getIsDamaged(){
 		return this.isDamaged;
+	}
+
+	@Override
+	public void plusEnergy(int energy) {
+		if(this.energy + energy > 10000) {
+			throw new TooMuchException();
+		}
+
+		this.energy = this.energy + energy;
 	}
 }

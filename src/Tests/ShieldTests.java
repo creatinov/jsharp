@@ -1,6 +1,7 @@
 package Tests;
 
 import StarTrek.Game;
+import StarTrek.exceptions.TooMuchException;
 import StarTrek.defender.Shield;
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,17 +27,17 @@ public class ShieldTests {
 	}
 
 	//transfer
+	@Test(expected = TooMuchException.class)
+	public void whenTransferEnergyToShield() {
+		game.raiseUpShield();
+		game.transferEnergyToShield(3000);
+		Assert.assertEquals(5000, game.getShieldEnergy());
+		game.transferEnergyToShield(5001);
+	}
 
 	//export
 
 	//shield down
-
-	@Test
-	public void checkTransferShipEnergyUnderZero(){
-		game.transferEnergy(101);
-		game.transferEnergy(1000);
-		//TODO
-	}
 
 
 	// TODO: for story A-2 "Buckle"

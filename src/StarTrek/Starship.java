@@ -1,6 +1,9 @@
 package StarTrek;
 
 import StarTrek.defender.Defender;
+import StarTrek.defender.Shield;
+import StarTrek.exceptions.NoDefenderException;
+import StarTrek.exceptions.TooMuchException;
 import StarTrek.weapon.Phaser;
 import StarTrek.weapon.Photon;
 import StarTrek.weapon.Weapon;
@@ -35,7 +38,7 @@ public class Starship {
 		//TODO 적의 공격에 맞았을 때.
 	}
 
-	private boolean hasDefender() {
+	public boolean hasDefender() {
 		if(this.defender == null) {
 			return false;
 		}
@@ -66,17 +69,20 @@ public class Starship {
 		return this.weapons.get("photon").powerRemaining();
 	}
 
-	public void transferEnergy(int energy){
-		if(energy < 0){
+	public void transferEnergy(int energy) {
+		if(!this.hasDefender()) {
+			throw new NoDefenderException();
+		}
+
+		if(energy < 1){
 			return;
 		}
-		if(this.getEnergy()+energy > 10000) return;
 
-		minusEnergy(energy);
-
-		// sheld.plusEnergy(energy);
-
-
+		this.minusEnergy(energy);
+		this.defender.plusEnergy(energy);
 	}
 
+	public Defender getDefender() {
+		return this.defender;
+	}
 }
