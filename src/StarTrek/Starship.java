@@ -27,9 +27,11 @@ public class Starship {
 		defenders.add(defender);
 	}
 
-	public int fire(String command, int distance) {
+	public void fire(Galaxy galaxy) {
+		String command = galaxy.parameter("command");
+
 		Weapon weapon = weapons.get(command);
-		return weapon.fire(distance);
+		weapon.fire(galaxy);
 	}
 
 	public void onHit(int damage) {
@@ -58,6 +60,18 @@ public class Starship {
 
 	public int getEnergy() {
 		return this.energy;
+	}
+
+	public int getPhaserEnergy() {
+		return this.weapons.get("phaser").powerRemaining();
+	}
+
+	public void setPhotonTorpedoes(int value) {
+		this.weapons.get("photon").setPowerRemaining(value);
+	}
+
+	public int getPhotonTorpedoes() {
+		return this.weapons.get("photon").powerRemaining();
 	}
 
 }

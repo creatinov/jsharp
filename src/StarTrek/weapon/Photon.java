@@ -1,5 +1,7 @@
 package StarTrek.weapon;
 
+import StarTrek.Galaxy;
+import StarTrek.Klingon;
 import StarTrek.exceptions.MissedException;
 
 import static StarTrek.Game.rnd;
@@ -22,13 +24,36 @@ public class Photon implements Weapon {
 	}
 
 	@Override
-	public int fire(int distance) {
-		boolean isMissed = ((rnd(4) + ((distance / 500) + 1) > 7));
-		this.torpedoes--;
-		if(isMissed) {
-			throw new MissedException();
+	public void fire(Galaxy galaxy) {
+		Klingon enemy = (Klingon) galaxy.variable("target");
+		int amount = 1;
+
+		if (this.canFire(amount)) {
+			int distance = enemy.distance();
+			int damage = 0;
+			try {
+				boolean isMissed = ((rnd(4) + ((distance / 500) + 1) > 7));
+				this.torpedoes -= amount;
+				if(isMissed) {
+					throw new MissedException();
+				}
+				damage = calcDamage(distance);
+				galaxy.writeLine("Photons hit Klingon at " + distance + " sectors with " + damage + " units");
+			} catch (MissedException e) {
+				galaxy.writeLine("Torpedo missed Klingon at " + distance + " sectors...");
+				return;
+			}
+
+			if (damage < enemy.getEnergy()) {
+				enemy.setEnergy(enemy.getEnergy() - damage);
+				galaxy.writeLine("Klingon has " + enemy.getEnergy() + " remaining");
+			} else {
+				galaxy.writeLine("Klingon destroyed!");
+				enemy.delete();
+			}
+		} else {
+			galaxy.writeLine("No more photon torpedoes!");
 		}
-		return calcDamage(distance);
 	}
 
 	@Override
