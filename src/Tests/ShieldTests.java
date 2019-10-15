@@ -1,7 +1,6 @@
 package Tests;
 
 import StarTrek.Game;
-import StarTrek.Starship;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,13 +55,13 @@ public class ShieldTests {
 
 	@Test
 	public void checkShipEnergy(){
-		Assert.assertEquals(game.getShipEnerrgy(),40000);
+		Assert.assertEquals(game.getShipEnergy(),40000);
 	}
 
 	@Test
 	public void checkShipEnergy2(){
 		game.transferEnergy(1000);
-		Assert.assertEquals(game.getShipEnerrgy(),39000);
+		Assert.assertEquals(game.getShipEnergy(),39000);
 	}
 
 	@Test

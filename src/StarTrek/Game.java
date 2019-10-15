@@ -51,7 +51,7 @@ public class Game {
 		}
 	}
 
-	public int getShipEnerrgy(){
+	public int getShipEnergy(){
 		return shipEnergy;
 	}
 

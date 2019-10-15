@@ -1,6 +1,6 @@
 package StarTrek.depensor;
 
-public class Shield implements Depensor {
+public class Shield implements Defender {
 
 	private int energy;
 
@@ -15,4 +15,10 @@ public class Shield implements Depensor {
 	public void setEnergy(int energy){
 		this.energy = energy;
 	}
+
+	@Override
+	public boolean hasEnergy() {
+		return this.energy > 0;
+	}
+
 }
