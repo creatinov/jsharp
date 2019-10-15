@@ -31,13 +31,18 @@ public class ShieldTests {
 		game.transferEnergyToDefender(3000);
 	}
 
-	@Test(expected = TooMuchException.class)
+	@Test
 	public void whenTransferEnergyToDefender() {
 		game.raiseUpDefender();
 		game.transferEnergyToDefender(3000);
 		Assert.assertEquals(37000, game.getShipEnergy());
 		Assert.assertEquals(5000, game.getShieldEnergy());
+	}
 
+	@Test(expected = TooMuchException.class)
+	public void whenTransferEnergyToDefenderTooMuch() {
+		game.raiseUpDefender();
+		game.transferEnergyToDefender(3000);
 		game.transferEnergyToDefender(5001);
 	}
 
