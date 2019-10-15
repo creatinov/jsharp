@@ -1,8 +1,8 @@
 package Tests;
 
 import StarTrek.Game;
-import StarTrek.exceptions.TooMuchException;
 import StarTrek.defender.Shield;
+import StarTrek.exceptions.TooMuchException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,12 +11,9 @@ public class ShieldTests {
 
 	private Game game;
 
-	private MockGalaxy context;
-
 	@Before
 	public void setUp() {
 		game = new Game();
-		context = new MockGalaxy();
 	}
 
 	@Test
