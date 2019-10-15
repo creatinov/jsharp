@@ -22,6 +22,7 @@ public class ShieldTests {
 		game.raiseUpShield();
 		Assert.assertTrue(game.isRaiseUpSheild());
 		Assert.assertEquals(2000, game.getShieldEnergy());
+		Assert.assertEquals(40000, game.getShipEnergy());	//not use starship energy
 	}
 
 	@Test(expected = NoDefenderException.class)
