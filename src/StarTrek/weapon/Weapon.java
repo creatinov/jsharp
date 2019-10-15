@@ -12,4 +12,6 @@ public interface Weapon {
 
 	void setPowerRemaining(int amount);
 
+
+
 }
