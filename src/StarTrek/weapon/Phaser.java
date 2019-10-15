@@ -45,6 +45,10 @@ public class Phaser implements Weapon {
 	}
 
 	private int calcDamage(int distance) {
-		return amount - (((amount / 20) * distance / 200) + rnd(200));
+		int damage = amount - (((amount / 20) * distance / 200) + rnd(200));
+		if (damage < 1) {
+			damage = 1;
+		}
+		return damage;
 	}
 }

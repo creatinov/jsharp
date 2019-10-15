@@ -72,8 +72,7 @@ public class Game {
 					wg.writeLine("Klingon out of range of phasers at " + distance + " sectors...");
 					return;
 				}
-				if (damage < 1)
-					damage = 1;
+
 				wg.writeLine("Phasers hit Klingon at " + distance + " sectors with " + damage + " units");
 				if (damage < enemy.getEnergy()) {
 					enemy.setEnergy(enemy.getEnergy() - damage);
