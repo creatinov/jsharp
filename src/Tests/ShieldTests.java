@@ -26,7 +26,7 @@ public class ShieldTests {
 	@Test
 	public void checkShieldEnergy() {
 		game.raiseUpShield(100);
-		int currentShieldEnergy = game.getShieldEnerrgy();
+		int currentShieldEnergy = game.getShieldEnergy();
 		Assert.assertEquals(currentShieldEnergy, 100);
 	}
 
@@ -34,7 +34,7 @@ public class ShieldTests {
 	public void checkTransferEnergyToSheild() {
 		game.raiseUpShield(100);
 		game.transferEnergy(1000);
-		int currentShieldEnergy = game.getShieldEnerrgy();
+		int currentShieldEnergy = game.getShieldEnergy();
 		Assert.assertEquals(currentShieldEnergy, 1100);
 	}
 
@@ -42,7 +42,7 @@ public class ShieldTests {
 	public void checkTranferEnergyFailure() {
 		game.raiseUpShield(10000);
 		game.transferEnergy(1);
-		Assert.assertEquals (game.getShieldEnerrgy(), 10000);
+		Assert.assertEquals (game.getShieldEnergy(), 10000);
 
 
 	}
@@ -50,7 +50,7 @@ public class ShieldTests {
 	public void checkTransferEnergyMinVaule(){
 		game.raiseUpShield(100);
 		game.transferEnergy(-1);
-		Assert.assertEquals(game.getShieldEnerrgy(),100);
+		Assert.assertEquals(game.getShieldEnergy(),100);
 	}
 
 	@Test

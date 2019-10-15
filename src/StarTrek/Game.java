@@ -34,7 +34,7 @@ public class Game {
 		shield = new Shield(energy);
 	}
 
-	public int getShieldEnerrgy() {
+	public int getShieldEnergy() {
 		return shield.getEnergy();
 	}
 
