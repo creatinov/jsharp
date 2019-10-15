@@ -13,10 +13,6 @@ public class Game {
 
 	private Starship starship = new Starship();
 
-	private Weapon phaser = new Phaser();
-
-	private Weapon photon = new Photon();
-
 	private Shield shield = new Shield(0);
 
 	private int shipEnergy = 40000;
