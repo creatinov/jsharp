@@ -18,9 +18,9 @@ public class ShieldTests {
 	}
 
 	@Test
-	public void raiseUp() {
-		game.raiseUpShield();
-		Assert.assertTrue(game.isRaiseUpSheild());
+	public void whenDefenderRaiseUp() {
+		game.raiseUpDefender();
+		Assert.assertTrue(game.isRaiseUpDefender());
 		Assert.assertEquals(2000, game.getShieldEnergy());
 		Assert.assertEquals(40000, game.getShipEnergy());	//not use starship energy
 	}
@@ -32,7 +32,7 @@ public class ShieldTests {
 
 	@Test(expected = TooMuchException.class)
 	public void whenTransferEnergyToDefender() {
-		game.raiseUpShield();
+		game.raiseUpDefender();
 		game.transferEnergyToDefender(3000);
 		Assert.assertEquals(37000, game.getShipEnergy());
 		Assert.assertEquals(5000, game.getShieldEnergy());

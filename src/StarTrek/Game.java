@@ -28,7 +28,7 @@ public class Game {
 
 	}
 
-	public void raiseUpShield() {
+	public void raiseUpDefender() {
 		starship.setUpDefender(new Shield(2000));
 	}
 
@@ -59,7 +59,7 @@ public class Game {
 	}
 
 
-	public boolean isRaiseUpSheild() {
+	public boolean isRaiseUpDefender() {
 		return this.starship.hasDefender();
 	}
 
