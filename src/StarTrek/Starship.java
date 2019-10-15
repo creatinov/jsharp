@@ -13,18 +13,15 @@ public class Starship {
 
 	private Map<String, Weapon> weapons = new HashMap<>();
 
-	private List<Defender> defenders;
+	private Defender defender;
 
 	public Starship() {
 		weapons.put("phaser", new Phaser());
 		weapons.put("photon", new Photon());
 	}
 
-	public void addDefender(Defender defender) {
-		if(defenders == null) {
-			defenders = new ArrayList<>();
-		}
-		defenders.add(defender);
+	public void setUpDefender(Defender defender) {
+		this.defender = defender;
 	}
 
 	public void fire(Galaxy galaxy) {
@@ -39,15 +36,10 @@ public class Starship {
 	}
 
 	private boolean hasDefender() {
-		if(this.defenders == null || this.defenders.isEmpty()) {
+		if(this.defender == null) {
 			return false;
 		}
-		for (Defender defender : this.defenders) {
-			if(defender.hasEnergy()) {
-				return true;
-			}
-		}
-		return false;
+		return this.defender.hasEnergy();
 	}
 
 	public void plusEnergy(int value) {
@@ -72,6 +64,19 @@ public class Starship {
 
 	public int getPhotonTorpedoes() {
 		return this.weapons.get("photon").powerRemaining();
+	}
+
+	public void transferEnergy(int energy){
+		if(energy < 0){
+			return;
+		}
+		if(this.getEnergy()+energy > 10000) return;
+
+		minusEnergy(energy);
+
+		// sheld.plusEnergy(energy);
+
+
 	}
 
 }

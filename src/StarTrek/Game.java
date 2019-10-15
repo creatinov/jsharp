@@ -30,23 +30,15 @@ public class Game {
 
 	}
 
-	public void raiseUpShield(int energy) {
-		shield = new Shield(energy);
+	public void raiseUpShield() {
+		shield = new Shield();
 	}
 
 	public int getShieldEnergy() {
 		return shield.getEnergy();
 	}
 
-	public void transferEnergy(int energy){
-		if(energy < 0){
-			return;
-		}
-		if(shield.getEnergy()+energy <=10000) {
-			shield.setEnergy( shield.getEnergy() + energy);
-			shipEnergy -= energy;
-		}
-	}
+
 
 	public int getShipEnergy(){
 		return shipEnergy;
