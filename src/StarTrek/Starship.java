@@ -32,6 +32,10 @@ public class Starship {
 		return weapon.fire(distance);
 	}
 
+	public void onHit(int damage) {
+		//TODO 적의 공격에 맞았을 때.
+	}
+
 	private boolean hasDefender() {
 		if(this.defenders == null || this.defenders.isEmpty()) {
 			return false;
