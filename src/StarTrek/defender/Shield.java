@@ -1,4 +1,4 @@
-package StarTrek.depensor;
+package StarTrek.defender;
 
 public class Shield implements Defender {
 

@@ -2,12 +2,11 @@ package StarTrek;
 
 import java.util.Random;
 
-import StarTrek.depensor.Shield;
+import StarTrek.defender.Shield;
 import StarTrek.exceptions.MissedException;
 import StarTrek.weapon.Phaser;
 import StarTrek.weapon.Photon;
 import StarTrek.weapon.Weapon;
-import Tests.MockGalaxy;
 import Untouchables.WebGadget;
 
 public class Game {

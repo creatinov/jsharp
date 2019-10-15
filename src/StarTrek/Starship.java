@@ -1,12 +1,11 @@
 package StarTrek;
 
-import StarTrek.depensor.Defender;
+import StarTrek.defender.Defender;
 import StarTrek.weapon.Phaser;
 import StarTrek.weapon.Photon;
 import StarTrek.weapon.Weapon;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Starship {
 
