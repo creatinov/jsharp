@@ -2,6 +2,7 @@ package Tests;
 
 import StarTrek.Game;
 import StarTrek.defender.Shield;
+import StarTrek.exceptions.NoDefenderException;
 import StarTrek.exceptions.TooMuchException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,16 +21,22 @@ public class ShieldTests {
 	public void raiseUp() {
 		game.raiseUpShield();
 		Assert.assertTrue(game.isRaiseUpSheild());
-		Assert.assertEquals(game.getShieldEnergy(), 2000);
+		Assert.assertEquals(2000, game.getShieldEnergy());
 	}
 
-	//transfer
+	@Test(expected = NoDefenderException.class)
+	public void whenTransferEnergyToDefenderBeforeRaiseUpDefender() {
+		game.transferEnergyToDefender(3000);
+	}
+
 	@Test(expected = TooMuchException.class)
 	public void whenTransferEnergyToDefender() {
 		game.raiseUpShield();
 		game.transferEnergyToDefender(3000);
 		Assert.assertEquals(37000, game.getShipEnergy());
 		Assert.assertEquals(5000, game.getShieldEnergy());
+
+
 		game.transferEnergyToDefender(5001);
 	}
 
