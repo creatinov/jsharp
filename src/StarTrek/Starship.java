@@ -34,8 +34,27 @@ public class Starship {
 		weapon.fire(galaxy);
 	}
 
-	public void onHit(int damage) {
-		//TODO 적의 공격에 맞았을 때.
+	public String onHit(int damage) {
+		return onHit(damage, generator.nextInt(3));
+//		return onHit(damage, 1);
+	}
+
+	public String onHit(int damage, int subsystem) {
+		if (subsystem == 0) {
+			return "an weapon is hit and damaged";
+		} else if (subsystem == 1) {
+			return "an engine is hit and damaged";
+		} else if (subsystem == 2) {
+			return "a shield is hit and damaged";
+		} else {
+			return "";
+		}
+	}
+
+	public static Random generator = new Random();
+
+	public int rnd(int maximum) {
+		return generator.nextInt(maximum);
 	}
 
 	public boolean hasDefender() {

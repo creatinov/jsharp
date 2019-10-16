@@ -12,7 +12,6 @@ import Untouchables.WebGadget;
 public class Game {
 
 	private Starship starship = new Starship();
-
 	private Shield shield = new Shield(0);
 
 	private int shipEnergy = 40000;

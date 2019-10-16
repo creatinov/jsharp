@@ -6,7 +6,7 @@ public class Shield implements Defender {
 
 	private int energy;
 	private boolean isUp = false;
-	private  int hp = 500;
+	private int hp = 500;
 
 	public Shield(int energy) {
 		this.energy = energy;
@@ -30,6 +30,7 @@ public class Shield implements Defender {
 		if (damage >= this.energy) {
 			this.energy = 0;
 			this.isUp = false;
+			this.onDamage(damage - this.energy);
 		} else {
 			this.energy -= damage;
 		}
