@@ -1,9 +1,10 @@
 package StarTrek.defender;
 
+import StarTrek.SubSystem;
 import StarTrek.exceptions.NotEnoughEnergyException;
 import StarTrek.exceptions.TooMuchException;
 
-public interface Defender {
+public interface Defender extends SubSystem {
 
 	boolean hasEnergy();
 

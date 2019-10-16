@@ -1,36 +1,33 @@
 package StarTrek;
 
 import StarTrek.defender.Defender;
-import StarTrek.defender.Shield;
 import StarTrek.exceptions.NoDefenderException;
-import StarTrek.exceptions.TooMuchException;
 import StarTrek.weapon.Phaser;
 import StarTrek.weapon.Photon;
 import StarTrek.weapon.Weapon;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Starship {
 
 	private int energy = 40000;
 
-	private Map<String, Weapon> weapons = new HashMap<>();
-
-	private Defender defender;
+	private Map<String, SubSystem> subSystems = new HashMap<>();
 
 	public Starship() {
-		weapons.put("phaser", new Phaser());
-		weapons.put("photon", new Photon());
+		subSystems.put("phaser", new Phaser());
+		subSystems.put("photon", new Photon());
 	}
 
 	public void setUpDefender(Defender defender) {
-		this.defender = defender;
+		this.subSystems.put("shield", defender);
 	}
 
 	public void fire(Galaxy galaxy) {
 		String command = galaxy.parameter("command");
 
-		Weapon weapon = weapons.get(command);
+		Weapon weapon = (Weapon) subSystems.get(command);
 		weapon.fire(galaxy);
 	}
 
@@ -39,10 +36,10 @@ public class Starship {
 	}
 
 	public boolean hasDefender() {
-		if(this.defender == null) {
+		if(!this.subSystems.containsKey("shield")) {
 			return false;
 		}
-		return this.defender.hasEnergy();
+		return ((Defender) this.subSystems.get("shield")).hasEnergy();
 	}
 
 	public void plusEnergy(int value) {
@@ -58,15 +55,15 @@ public class Starship {
 	}
 
 	public int getPhaserEnergy() {
-		return this.weapons.get("phaser").powerRemaining();
+		return ((Weapon)this.subSystems.get("phaser")).powerRemaining();
 	}
 
 	public void setPhotonTorpedoes(int value) {
-		this.weapons.get("photon").setPowerRemaining(value);
+		((Weapon) this.subSystems.get("photon")).setPowerRemaining(value);
 	}
 
 	public int getPhotonTorpedoes() {
-		return this.weapons.get("photon").powerRemaining();
+		return ((Weapon)this.subSystems.get("photon")).powerRemaining();
 	}
 
 	public void transferEnergy(int energy) {
@@ -79,11 +76,11 @@ public class Starship {
 		}
 
 		this.minusEnergy(energy);
-		this.defender.plusEnergy(energy);
+		((Defender) this.subSystems.get("shield")).plusEnergy(energy);
 	}
 
 	public Defender getDefender() {
-		return this.defender;
+		return (Defender) this.subSystems.get("shield");
 	}
 
 	public void exportEnergy(int energy) {
@@ -92,6 +89,6 @@ public class Starship {
 		}
 
 		this.plusEnergy(energy);
-		this.defender.minusEnergy(energy);
+		((Defender) this.subSystems.get("shield")).minusEnergy(energy);
 	}
 }
